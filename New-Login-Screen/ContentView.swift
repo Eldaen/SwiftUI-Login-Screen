@@ -21,7 +21,7 @@ struct ContentView: View {
 				.ignoresSafeArea()
 			
 			VStack {
-				ScrollView {
+				ScrollView(showsIndicators: false) {
 					
 					Image(systemName: "star")
 						.resizable()
