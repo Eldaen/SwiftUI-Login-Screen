@@ -84,6 +84,7 @@ struct ContentView: View {
 						.clipShape(Capsule())
 						.foregroundColor(.white)
 						.padding(.top, 40)
+						.disabled(login.isEmpty || password.isEmpty)
 						.alert(isPresented: $showingAlert) {
 							Alert(title: Text("Неверные данные"),
 								  message: Text("Ай-яй-яй"),
@@ -93,6 +94,8 @@ struct ContentView: View {
 					}
 				}
 			}
+		}.onTapGesture {
+			UIApplication.shared.endEditing()
 		}
     }
 	
@@ -112,6 +115,11 @@ struct ContentView: View {
 	}
 }
 
+extension UIApplication {
+   func endEditing() {
+	   sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+   }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
