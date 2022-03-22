@@ -10,8 +10,8 @@ import SwiftUI
 /// Вью для отображения экрана авторизации
 struct LoginView: View {
 	
-	@State private var login: String = ""
-	@State private var password: String = ""
+	@State private var login: String = "Admin"
+	@State private var password: String = "12345"
 	@State private var showingAlert: Bool = false
 	
 	@Binding var isLoggedIn: Bool
@@ -45,6 +45,7 @@ struct LoginView: View {
 								TextField("", text: $login)
 									.frame(maxWidth: 150)
 									.textFieldStyle(.roundedBorder)
+									.textInputAutocapitalization(.never)
 							}
 							HStack {
 								Text("Password:")
