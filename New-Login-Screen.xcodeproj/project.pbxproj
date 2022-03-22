@@ -13,6 +13,10 @@
 		D028B32D27D0FFC500FFE60C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028B32C27D0FFC500FFE60C /* LoginView.swift */; };
 		D028B33027D1005E00FFE60C /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028B32F27D1005E00FFE60C /* UIApplication.swift */; };
 		D055939B27E9DE3A001DF846 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D055939A27E9DE3A001DF846 /* AppView.swift */; };
+		D055939D27E9E6F5001DF846 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D055939C27E9E6F5001DF846 /* MainScreenView.swift */; };
+		D05593A227E9E74A001DF846 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A127E9E74A001DF846 /* FriendsView.swift */; };
+		D05593A427E9E767001DF846 /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A327E9E767001DF846 /* GroupsView.swift */; };
+		D05593A627E9E773001DF846 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A527E9E773001DF846 /* NewsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,10 @@
 		D028B32C27D0FFC500FFE60C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D028B32F27D1005E00FFE60C /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		D055939A27E9DE3A001DF846 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		D055939C27E9E6F5001DF846 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		D05593A127E9E74A001DF846 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		D05593A327E9E767001DF846 /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
+		D05593A527E9E773001DF846 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +83,12 @@
 		D028B32B27D0FFB800FFE60C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D05593A027E9E72C001DF846 /* News */,
+				D055939F27E9E726001DF846 /* Groups */,
+				D055939E27E9E721001DF846 /* Friends */,
 				D028B32C27D0FFC500FFE60C /* LoginView.swift */,
 				D055939A27E9DE3A001DF846 /* AppView.swift */,
+				D055939C27E9E6F5001DF846 /* MainScreenView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -87,6 +99,30 @@
 				D028B32F27D1005E00FFE60C /* UIApplication.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D055939E27E9E721001DF846 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				D05593A127E9E74A001DF846 /* FriendsView.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		D055939F27E9E726001DF846 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D05593A327E9E767001DF846 /* GroupsView.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		D05593A027E9E72C001DF846 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D05593A527E9E773001DF846 /* NewsView.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,9 +195,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05593A227E9E74A001DF846 /* FriendsView.swift in Sources */,
+				D05593A627E9E773001DF846 /* NewsView.swift in Sources */,
 				D028B33027D1005E00FFE60C /* UIApplication.swift in Sources */,
+				D055939D27E9E6F5001DF846 /* MainScreenView.swift in Sources */,
 				D028B32D27D0FFC500FFE60C /* LoginView.swift in Sources */,
 				D055939B27E9DE3A001DF846 /* AppView.swift in Sources */,
+				D05593A427E9E767001DF846 /* GroupsView.swift in Sources */,
 				D028B31E27CCE5D700FFE60C /* New_Login_ScreenApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

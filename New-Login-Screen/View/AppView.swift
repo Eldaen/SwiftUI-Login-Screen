@@ -17,7 +17,7 @@ struct AppView: View {
 				LoginView(isLoggedIn: $isLoggedIn)
 				
 				NavigationLink(isActive: $isLoggedIn) {
-					Color.blue
+					MainScreenView()
 				} label: {
 					EmptyView()
 				}
