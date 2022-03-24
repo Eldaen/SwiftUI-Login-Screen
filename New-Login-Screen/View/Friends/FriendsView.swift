@@ -47,7 +47,11 @@ struct FriendsView: View {
 			ForEach(friends) { friendSection in
 				Section(header: Text(friendSection.name)) {
 					ForEach(friendSection.friends) { friend in
-						FriendsRow(friend: friend)
+						NavigationLink {
+							Color.red
+						} label: {
+							FriendsRow(friend: friend)
+						}
 					}
 				}
 				.headerProminence(.increased)
