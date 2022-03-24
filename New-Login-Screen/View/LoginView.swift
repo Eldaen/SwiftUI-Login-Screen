@@ -14,6 +14,7 @@ struct LoginView: View {
 	@State private var password: String = "12345"
 	@State private var showingAlert: Bool = false
 	
+	/// Биндинг статуса авторизации
 	@Binding var isLoggedIn: Bool
 	
 	var body: some View {

@@ -10,32 +10,38 @@ import SwiftUI
 /// Вью для отображения экрана друзей
 struct FriendsView: View {
 	
+	/// Статические друзья
 	@State private var friends: [FriendsSection] = [
 		FriendsSection(name: "V",
 					   friends: [
-						Friend(name: "Vasia", imageName: ""),
-						Friend(name: "Vania", imageName: "")
+						Friend(name: "Vasia", imageName: "", images: [
+							FriendImage(name: "person"),
+							FriendImage(name: "person"),
+							FriendImage(name: "person"),
+							FriendImage(name: "person"),
+						]),
+						Friend(name: "Vania", imageName: "", images: [])
 					   ]),
 		FriendsSection(name: "K",
 					   friends: [
-						Friend(name: "Katia", imageName: ""),
-						Friend(name: "Kiril", imageName: "")
+						Friend(name: "Katia", imageName: "", images: []),
+						Friend(name: "Kiril", imageName: "", images: [])
 					   ]),
 		FriendsSection(name: "P",
 					   friends: [
-						Friend(name: "Petia", imageName: "")
+						Friend(name: "Petia", imageName: "", images: [])
 					   ]),
 		FriendsSection(name: "S",
 					   friends: [
-						Friend(name: "Sasha", imageName: "")
+						Friend(name: "Sasha", imageName: "", images: [])
 					   ]),
 		FriendsSection(name: "M",
 					   friends: [
-						Friend(name: "Masha", imageName: "")
+						Friend(name: "Masha", imageName: "", images: [])
 					   ]),
 		FriendsSection(name: "D",
 					   friends: [
-						Friend(name: "Dasha", imageName: "")
+						Friend(name: "Dasha", imageName: "", images: [])
 					   ]),
 	]
 	
@@ -48,7 +54,7 @@ struct FriendsView: View {
 				Section(header: Text(friendSection.name)) {
 					ForEach(friendSection.friends) { friend in
 						NavigationLink {
-							Color.red
+							FriendsProfileView(friend: friend)
 						} label: {
 							FriendsRow(friend: friend)
 						}

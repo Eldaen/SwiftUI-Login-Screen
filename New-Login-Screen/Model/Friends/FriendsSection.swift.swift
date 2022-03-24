@@ -9,7 +9,10 @@ import Foundation
 
 /// Структура секции друга
 struct FriendsSection: Identifiable {
+	
+	/// id == имени
 	var id: String { name }
+	
 	let name: String
 	let friends: [Friend]
 }

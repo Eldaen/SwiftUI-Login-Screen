@@ -20,6 +20,10 @@
 		D05593AA27EC625C001DF846 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A927EC625C001DF846 /* Friend.swift */; };
 		D05593AD27EC62E2001DF846 /* FriendsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593AC27EC62E2001DF846 /* FriendsRow.swift */; };
 		D05593AF27EC69D5001DF846 /* FriendsSection.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593AE27EC69D5001DF846 /* FriendsSection.swift.swift */; };
+		D05593B227EC6D4C001DF846 /* FriendsProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593B127EC6D4C001DF846 /* FriendsProfileView.swift */; };
+		D05593B527EC6EC1001DF846 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = D05593B427EC6EC1001DF846 /* ASCollectionView */; };
+		D05593B727EC7042001DF846 /* FriendImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593B627EC7042001DF846 /* FriendImage.swift */; };
+		D05593BA27EC7138001DF846 /* FriendsProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593B927EC7138001DF846 /* FriendsProfileRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,9 @@
 		D05593A927EC625C001DF846 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		D05593AC27EC62E2001DF846 /* FriendsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRow.swift; sourceTree = "<group>"; };
 		D05593AE27EC69D5001DF846 /* FriendsSection.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsSection.swift.swift; sourceTree = "<group>"; };
+		D05593B127EC6D4C001DF846 /* FriendsProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProfileView.swift; sourceTree = "<group>"; };
+		D05593B627EC7042001DF846 /* FriendImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImage.swift; sourceTree = "<group>"; };
+		D05593B927EC7138001DF846 /* FriendsProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProfileRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05593B527EC6EC1001DF846 /* ASCollectionView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +98,7 @@
 		D028B32B27D0FFB800FFE60C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D05593B027EC6D30001DF846 /* FriendsProfile */,
 				D05593A027E9E72C001DF846 /* News */,
 				D055939F27E9E726001DF846 /* Groups */,
 				D055939E27E9E721001DF846 /* Friends */,
@@ -146,6 +155,7 @@
 			children = (
 				D05593A927EC625C001DF846 /* Friend.swift */,
 				D05593AE27EC69D5001DF846 /* FriendsSection.swift.swift */,
+				D05593B627EC7042001DF846 /* FriendImage.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -154,6 +164,23 @@
 			isa = PBXGroup;
 			children = (
 				D05593AC27EC62E2001DF846 /* FriendsRow.swift */,
+			);
+			path = Rows;
+			sourceTree = "<group>";
+		};
+		D05593B027EC6D30001DF846 /* FriendsProfile */ = {
+			isa = PBXGroup;
+			children = (
+				D05593B827EC7129001DF846 /* Rows */,
+				D05593B127EC6D4C001DF846 /* FriendsProfileView.swift */,
+			);
+			path = FriendsProfile;
+			sourceTree = "<group>";
+		};
+		D05593B827EC7129001DF846 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				D05593B927EC7138001DF846 /* FriendsProfileRow.swift */,
 			);
 			path = Rows;
 			sourceTree = "<group>";
@@ -174,6 +201,9 @@
 			dependencies = (
 			);
 			name = "New-Login-Screen";
+			packageProductDependencies = (
+				D05593B427EC6EC1001DF846 /* ASCollectionView */,
+			);
 			productName = "New-Login-Screen";
 			productReference = D028B31A27CCE5D700FFE60C /* New-Login-Screen.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +232,9 @@
 				Base,
 			);
 			mainGroup = D028B31127CCE5D700FFE60C;
+			packageReferences = (
+				D05593B327EC6EC1001DF846 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
+			);
 			productRefGroup = D028B31B27CCE5D700FFE60C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +266,10 @@
 				D05593A627E9E773001DF846 /* NewsView.swift in Sources */,
 				D028B33027D1005E00FFE60C /* UIApplication.swift in Sources */,
 				D055939D27E9E6F5001DF846 /* MainScreenView.swift in Sources */,
+				D05593B727EC7042001DF846 /* FriendImage.swift in Sources */,
 				D05593AD27EC62E2001DF846 /* FriendsRow.swift in Sources */,
+				D05593B227EC6D4C001DF846 /* FriendsProfileView.swift in Sources */,
+				D05593BA27EC7138001DF846 /* FriendsProfileRow.swift in Sources */,
 				D028B32D27D0FFC500FFE60C /* LoginView.swift in Sources */,
 				D055939B27E9DE3A001DF846 /* AppView.swift in Sources */,
 				D05593AA27EC625C001DF846 /* Friend.swift in Sources */,
@@ -441,6 +477,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D05593B327EC6EC1001DF846 /* XCRemoteSwiftPackageReference "ASCollectionView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D05593B427EC6EC1001DF846 /* ASCollectionView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05593B327EC6EC1001DF846 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
+			productName = ASCollectionView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D028B31227CCE5D700FFE60C /* Project object */;
 }
