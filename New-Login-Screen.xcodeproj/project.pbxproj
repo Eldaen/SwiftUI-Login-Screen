@@ -17,6 +17,9 @@
 		D05593A227E9E74A001DF846 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A127E9E74A001DF846 /* FriendsView.swift */; };
 		D05593A427E9E767001DF846 /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A327E9E767001DF846 /* GroupsView.swift */; };
 		D05593A627E9E773001DF846 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A527E9E773001DF846 /* NewsView.swift */; };
+		D05593AA27EC625C001DF846 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593A927EC625C001DF846 /* Friend.swift */; };
+		D05593AD27EC62E2001DF846 /* FriendsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593AC27EC62E2001DF846 /* FriendsRow.swift */; };
+		D05593AF27EC69D5001DF846 /* FriendsSection.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593AE27EC69D5001DF846 /* FriendsSection.swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		D05593A127E9E74A001DF846 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		D05593A327E9E767001DF846 /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 		D05593A527E9E773001DF846 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		D05593A927EC625C001DF846 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		D05593AC27EC62E2001DF846 /* FriendsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRow.swift; sourceTree = "<group>"; };
+		D05593AE27EC69D5001DF846 /* FriendsSection.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsSection.swift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 		D028B31C27CCE5D700FFE60C /* New-Login-Screen */ = {
 			isa = PBXGroup;
 			children = (
+				D05593A727EC6240001DF846 /* Model */,
 				D028B32E27D1005100FFE60C /* Extension */,
 				D028B32B27D0FFB800FFE60C /* View */,
 				D028B31D27CCE5D700FFE60C /* New_Login_ScreenApp.swift */,
@@ -104,6 +111,7 @@
 		D055939E27E9E721001DF846 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				D05593AB27EC62D1001DF846 /* Rows */,
 				D05593A127E9E74A001DF846 /* FriendsView.swift */,
 			);
 			path = Friends;
@@ -123,6 +131,31 @@
 				D05593A527E9E773001DF846 /* NewsView.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		D05593A727EC6240001DF846 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D05593A827EC6248001DF846 /* Friends */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D05593A827EC6248001DF846 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				D05593A927EC625C001DF846 /* Friend.swift */,
+				D05593AE27EC69D5001DF846 /* FriendsSection.swift.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		D05593AB27EC62D1001DF846 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				D05593AC27EC62E2001DF846 /* FriendsRow.swift */,
+			);
+			path = Rows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,12 +228,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05593AF27EC69D5001DF846 /* FriendsSection.swift.swift in Sources */,
 				D05593A227E9E74A001DF846 /* FriendsView.swift in Sources */,
 				D05593A627E9E773001DF846 /* NewsView.swift in Sources */,
 				D028B33027D1005E00FFE60C /* UIApplication.swift in Sources */,
 				D055939D27E9E6F5001DF846 /* MainScreenView.swift in Sources */,
+				D05593AD27EC62E2001DF846 /* FriendsRow.swift in Sources */,
 				D028B32D27D0FFC500FFE60C /* LoginView.swift in Sources */,
 				D055939B27E9DE3A001DF846 /* AppView.swift in Sources */,
+				D05593AA27EC625C001DF846 /* Friend.swift in Sources */,
 				D05593A427E9E767001DF846 /* GroupsView.swift in Sources */,
 				D028B31E27CCE5D700FFE60C /* New_Login_ScreenApp.swift in Sources */,
 			);
