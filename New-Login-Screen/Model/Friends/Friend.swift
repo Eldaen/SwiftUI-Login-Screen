@@ -8,9 +8,14 @@
 import Foundation
 
 /// Модель друга
-struct Friend: Identifiable {
-	let id: UUID = UUID()
+struct Friend: Identifiable, Codable {
+	let id: Int
 	let name: String
-	let imageName: String
-	let images: [FriendImage]
+	let image: String
+
+	enum CodingKeys: String, CodingKey {
+		case name = "first_name"
+		case image = "photo_100"
+		case id
+	}
 }

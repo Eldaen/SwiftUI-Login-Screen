@@ -11,13 +11,13 @@ import SwiftUI
 struct FriendsView: View {
 	
 	/// Статические друзья
-	@State private var friends: [FriendsSection] = FriendsSection.data
+	@State private var friends: [FriendsSection] = []
 	
     var body: some View {
 		List {
 			ForEach(friends) { friendSection in
-				Section(header: Text(friendSection.name)) {
-					ForEach(friendSection.friends) { friend in
+				Section(header: Text(String(friendSection.key))) {
+					ForEach(friendSection.data) { friend in
 						NavigationLink {
 							FriendsProfileView(friend: friend)
 						} label: {
