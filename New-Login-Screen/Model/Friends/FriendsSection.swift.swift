@@ -17,7 +17,11 @@ struct FriendsSection: Identifiable {
 	let friends: [Friend]
 }
 
+// MARK: - Some static data
+
 extension FriendsSection {
+	
+	/// Статически данные
 	static var data = [
 		FriendsSection(name: "V",
 					   friends: [
