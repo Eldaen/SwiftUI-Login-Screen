@@ -10,12 +10,15 @@ import SwiftUI
 /// Вью для отображения экрана друзей
 struct FriendsView: View {
 	
-	/// Статические друзья
-	@State private var friends: [FriendsSection] = []
+	@ObservedObject var viewModel: FriendsViewModel
+	
+	init(viewModel: FriendsViewModel) {
+		self.viewModel = viewModel
+	}
 	
     var body: some View {
 		List {
-			ForEach(friends) { friendSection in
+			ForEach(viewModel.friends) { friendSection in
 				Section(header: Text(String(friendSection.key))) {
 					ForEach(friendSection.data) { friend in
 						NavigationLink {
@@ -29,12 +32,9 @@ struct FriendsView: View {
 				
 			}
 		}
+		.onAppear(perform: {
+			viewModel.fetchFriends {}
+		})
 		.listStyle(.insetGrouped)
-    }
-}
-
-struct FriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendsView()
     }
 }

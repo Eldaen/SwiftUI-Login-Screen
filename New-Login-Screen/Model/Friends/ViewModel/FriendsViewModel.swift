@@ -36,8 +36,9 @@ protocol FriendsViewModelType {
 }
 
 /// Вью модель для контроллера Friends
-final class FriendsViewModel: FriendsViewModelType {
-	var friends: [FriendsSection] = []
+final class FriendsViewModel: FriendsViewModelType, ObservableObject {
+	@Published var friends: [FriendsSection] = []
+	
 	var filteredData: [FriendsSection] = []
 	var lettersOfNames: [String] = []
 	

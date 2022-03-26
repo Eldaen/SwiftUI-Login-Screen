@@ -70,7 +70,7 @@ final class NetworkManager: NetworkManagerInterface {
 			}
 		}
 		
-		guard let token = Session.instance.token else {
+		guard let token = UserDefaults.standard.object(forKey: "vkToken") as? String else {
 			return
 		}
 		

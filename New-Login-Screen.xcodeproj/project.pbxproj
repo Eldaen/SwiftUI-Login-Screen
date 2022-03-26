@@ -35,6 +35,7 @@
 		D05593D327EF039B001DF846 /* UserImagesMainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593D227EF039B001DF846 /* UserImagesMainResponse.swift */; };
 		D05593D727EF05E5001DF846 /* VkFriendsMainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593D627EF05E5001DF846 /* VkFriendsMainResponse.swift */; };
 		D05593D927EF060E001DF846 /* VkFriendsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593D827EF060E001DF846 /* VkFriendsResponse.swift */; };
+		D05593DC27EF09F0001DF846 /* VkLoginWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593DB27EF09F0001DF846 /* VkLoginWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		D05593D227EF039B001DF846 /* UserImagesMainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImagesMainResponse.swift; sourceTree = "<group>"; };
 		D05593D627EF05E5001DF846 /* VkFriendsMainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkFriendsMainResponse.swift; sourceTree = "<group>"; };
 		D05593D827EF060E001DF846 /* VkFriendsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkFriendsResponse.swift; sourceTree = "<group>"; };
+		D05593DB27EF09F0001DF846 /* VkLoginWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		D028B32B27D0FFB800FFE60C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D05593DA27EF09DA001DF846 /* VkLogin */,
 				D05593B027EC6D30001DF846 /* FriendsProfile */,
 				D05593A027E9E72C001DF846 /* News */,
 				D055939F27E9E726001DF846 /* Groups */,
@@ -266,6 +269,14 @@
 			path = ApiGetFriends;
 			sourceTree = "<group>";
 		};
+		D05593DA27EF09DA001DF846 /* VkLogin */ = {
+			isa = PBXGroup;
+			children = (
+				D05593DB27EF09F0001DF846 /* VkLoginWebView.swift */,
+			);
+			path = VkLogin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -367,6 +378,7 @@
 				D05593D327EF039B001DF846 /* UserImagesMainResponse.swift in Sources */,
 				D05593D727EF05E5001DF846 /* VkFriendsMainResponse.swift in Sources */,
 				D028B31E27CCE5D700FFE60C /* New_Login_ScreenApp.swift in Sources */,
+				D05593DC27EF09F0001DF846 /* VkLoginWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

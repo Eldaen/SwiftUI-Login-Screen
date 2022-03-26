@@ -10,18 +10,16 @@ import SwiftUI
 struct AppView: View {
 	
 	@State var isLoggedIn: Bool = false
+	@AppStorage("vkToken") var token: String?
 	
     var body: some View {
 		NavigationView {
 			HStack {
-				LoginView(isLoggedIn: $isLoggedIn)
-				
-				NavigationLink(isActive: $isLoggedIn) {
+				if token == nil {
+					VKLoginWebView()
+				} else {
 					MainScreenView()
-				} label: {
-					EmptyView()
 				}
-
 			}
 		}
     }

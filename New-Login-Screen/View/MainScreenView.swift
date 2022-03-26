@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+/// Вью для отображения основного экрана после авторизации
 struct MainScreenView: View {
 	
 	private let tabTitles = ["Friends", "Groups", "News"]
 	@State var selection = 0
 	
+	/// Сервис для загрузки друзей
+	let userService = UserService(networkManager: NetworkManager())
+	
     var body: some View {
 		
 		TabView(selection: $selection) {
-			FriendsView()
+			FriendsView(
+				viewModel: FriendsViewModel(
+					loader: userService
+				)
+			)
 				.tabItem {
 					Image(systemName: "person")
 					Text("Friends")
