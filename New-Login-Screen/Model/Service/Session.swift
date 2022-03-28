@@ -36,5 +36,7 @@ final class Session {
 				WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
 			}
 		}
+		
+		UserDefaults.standard.removeObject(forKey: "vkToken")
 	}
 }

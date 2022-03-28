@@ -37,9 +37,9 @@ protocol FriendsViewModelType {
 
 /// Вью модель для контроллера Friends
 final class FriendsViewModel: FriendsViewModelType, ObservableObject {
-	var friends: [FriendsSection] = []
+	@Published var friends: [FriendsSection] = []
 	
-	var objectWillChange = ObjectWillChangePublisher()
+	//var objectWillChange = ObjectWillChangePublisher()
 	
 	var filteredData: [FriendsSection] = []
 	var lettersOfNames: [String] = []
@@ -58,7 +58,7 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 			// наполянем имена заголовков секций
 			//self?.loadLetters()
 
-			self?.objectWillChange.send()
+			//self?.objectWillChange.send()
 			completion()
 		}
 	}

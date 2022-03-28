@@ -10,10 +10,13 @@ import SwiftUI
 /// Вью для отображения основного экрана после авторизации
 struct MainScreenView: View {
 	
+	// для скрытия вьюхи при логауте
+	@Environment(\.presentationMode) var presentation
+	
 	private let tabTitles = ["Friends", "Groups", "News"]
 	@State var selection = 0
 	
-	/// Сервис для загрузки друзей
+	
 	let userService = UserService(networkManager: NetworkManager())
 	
     var body: some View {
@@ -46,6 +49,14 @@ struct MainScreenView: View {
 		}
 		.navigationTitle("\(tabTitles[selection])")
 		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			ToolbarItemGroup(placement: .navigation) {
+				Button("Logout") {
+					Session.instance.clean()
+					self.presentation.wrappedValue.dismiss()
+				}
+			}
+		}
     }
 }
 
