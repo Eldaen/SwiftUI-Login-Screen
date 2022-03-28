@@ -37,7 +37,9 @@ protocol FriendsViewModelType {
 
 /// Вью модель для контроллера Friends
 final class FriendsViewModel: FriendsViewModelType, ObservableObject {
-	@Published var friends: [FriendsSection] = []
+	var friends: [FriendsSection] = []
+	
+	var objectWillChange = ObjectWillChangePublisher()
 	
 	var filteredData: [FriendsSection] = []
 	var lettersOfNames: [String] = []
@@ -48,23 +50,6 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 		self.loader = loader
 	}
 	
-//	func configureCell(cell: FriendsTableViewCell, indexPath: IndexPath) {
-//		guard indexPath.section < filteredData.count else { return }
-//		let section = filteredData[indexPath.section]
-//
-//		guard indexPath.row < section.data.count else { return }
-//		let name = section.data[indexPath.row].name
-//		let image = section.data[indexPath.row].image
-//
-//		// конфигурируем и возвращаем готовую ячейку
-//		cell.configure(name: name, image: UIImage())
-//
-//		// Ставим картинку на загрузку
-//		loader.loadImage(url: image) { image in
-//			cell.updateImage(with: image)
-//		}
-//	}
-	
 	func fetchFriends(completion: @escaping () -> Void) {
 		loader.loadFriends() { [weak self] friends in
 			self?.friends = friends
@@ -73,6 +58,7 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 			// наполянем имена заголовков секций
 			//self?.loadLetters()
 
+			self?.objectWillChange.send()
 			completion()
 		}
 	}
@@ -125,15 +111,4 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 		filteredData = friends
 		completion()
 	}
-}
-
-// MARK: - Private methods
-private extension FriendsViewModel {
-	
-//	/// Cоздаёт массив  букв для заголовков секций
-//	func loadLetters() {
-//		for user in friends {
-//			lettersOfNames.append(String(user.key))
-//		}
-//	}
 }

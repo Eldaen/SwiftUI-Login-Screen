@@ -9,6 +9,10 @@ import Foundation
 
 /// Модель картинки галереи пользователя
 struct FriendImage: Identifiable {
-	var id: String { name }
-	let name: String
+	var id: String { link }
+	let link: String
+	
+	var imageUrl: URL? {
+		URL(string: link)
+	}
 }

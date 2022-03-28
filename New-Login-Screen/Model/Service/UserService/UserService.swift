@@ -17,7 +17,7 @@ protocol UserLoader: Loader {
 	func loadUserPhotos(for id: String, completion: @escaping ([ApiImage]) -> Void)
 	
 	/// Запрашивает кол-во друзей пользователя
-//	func getFriendsCount(completion: @escaping (Int) -> Void)
+	func getFriendsCount(completion: @escaping (Int) -> Void)
 }
 
 /// Сервис для загрузки данных пользователей из сети
@@ -89,20 +89,6 @@ final class UserService: UserLoader {
 			"fields" : "photo_100",
 		]
 		
-//		if checkExpiry(key: cacheKey) {
-//			var friends: [Friend] = []
-//
-//			persistence.read(Friend.self) { result in
-//				friends = Array(result)
-//			}
-//
-//			if !friends.isEmpty {
-//				let sections = formFriendsArray(from: friends)
-//				completion(sections)
-//				return
-//			}
-//		}
-		
 		networkManager.request(method: .friendsGet,
 							   httpMethod: .get,
 							   params: params) { [weak self] (result: Result<VkFriendsMainResponse, Error>) in
@@ -128,18 +114,18 @@ final class UserService: UserLoader {
 	}
 	
 	/// Запрашивает кол-во друзей пользователя
-//	func getFriendsCount(completion: @escaping (Int) -> Void) {
-//		networkManager.request(method: .friendsGet,
-//							   httpMethod: .get,
-//							   params: [:]) { (result: Result<FriendsCountMainResponse, Error>) in
-//			switch result {
-//			case .success(let friendsResponse):
-//				completion(friendsResponse.response.count)
-//			case .failure(let error):
-//				debugPrint("Error: \(error.localizedDescription)")
-//			}
-//		}
-//	}
+	func getFriendsCount(completion: @escaping (Int) -> Void) {
+		networkManager.request(method: .friendsGet,
+							   httpMethod: .get,
+							   params: [:]) { (result: Result<FriendsCountMainResponse, Error>) in
+			switch result {
+			case .success(let friendsResponse):
+				completion(friendsResponse.response.count)
+			case .failure(let error):
+				debugPrint("Error: \(error.localizedDescription)")
+			}
+		}
+	}
 	
 	/// Загружает все фото пользователя
 	func loadUserPhotos(for id: String, completion: @escaping ([ApiImage]) -> Void) {

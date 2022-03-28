@@ -11,33 +11,32 @@ import ASCollectionView
 /// Вью для отображения профиля друга
 struct FriendsProfileView: View {
 	
-	/// Модель друга
-	let friend: Friend
+	@ObservedObject var viewModel: FriendsProfileViewModel
+	
+	init(viewModel: FriendsProfileViewModel) {
+		self.viewModel = viewModel
+	}
 	
     var body: some View {
 		VStack {
-			Text(friend.name)
+			Text(viewModel.friend.name)
 			
-//			ASCollectionView(data: friend.images) { item, _ in
-//				FriendsProfileRow(image: item)
-//			}
-//			.layout {
-//				.grid(
-//					layoutMode: .fixedNumberOfColumns(2),
-//					itemSpacing: 8,
-//					lineSpacing: 16
-//				)
-//			}
+			ASCollectionView(data: viewModel.storedImages) { item, _ in
+				FriendsProfileRow(image: item)
+			}
+			.layout {
+				.grid(
+					layoutMode: .fixedNumberOfColumns(3),
+					itemSpacing: 8,
+					lineSpacing: 16,
+					itemSize: .absolute(100)
+				)
+			}
+			.onAppear {
+				viewModel.fetchPhotos {
+}
+			}
 		}
 
-    }
-}
-
-struct FriendsProfileView_Previews: PreviewProvider {
-	
-	static var friend = Friend(id: 0, name: "Vasia", image: "")
-	
-    static var previews: some View {
-        FriendsProfileView(friend: friend)
     }
 }

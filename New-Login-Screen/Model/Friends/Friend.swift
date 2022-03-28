@@ -12,6 +12,10 @@ struct Friend: Identifiable, Codable {
 	let id: Int
 	let name: String
 	let image: String
+	
+	var imageUrl: URL? {
+		URL(string: image)
+	}
 
 	enum CodingKeys: String, CodingKey {
 		case name = "first_name"

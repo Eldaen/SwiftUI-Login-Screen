@@ -14,6 +14,7 @@ struct FriendsView: View {
 	
 	init(viewModel: FriendsViewModel) {
 		self.viewModel = viewModel
+		
 	}
 	
     var body: some View {
@@ -22,7 +23,9 @@ struct FriendsView: View {
 				Section(header: Text(String(friendSection.key))) {
 					ForEach(friendSection.data) { friend in
 						NavigationLink {
-							FriendsProfileView(friend: friend)
+							FriendsProfileView(
+								viewModel: FriendsProfileViewModel(friend: friend, loader: viewModel.loader)
+							)
 						} label: {
 							FriendsRow(friend: friend)
 						}
