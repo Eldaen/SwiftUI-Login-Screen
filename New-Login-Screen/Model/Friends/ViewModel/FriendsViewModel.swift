@@ -19,9 +19,6 @@ protocol FriendsViewModelType {
 	/// Сервис по загрузке данных пользователей
 	var loader: UserLoader { get }
 	
-	/// Список букв для заголовков секций
-	var lettersOfNames: [String] { get }
-	
 	/// Конфигурируем ячейку друга для отображения
 	//func configureCell(cell: FriendsTableViewCell, indexPath: IndexPath)
 	
@@ -37,12 +34,10 @@ protocol FriendsViewModelType {
 
 /// Вью модель для контроллера Friends
 final class FriendsViewModel: FriendsViewModelType, ObservableObject {
-	@Published var friends: [FriendsSection] = []
-	
-	//var objectWillChange = ObjectWillChangePublisher()
+	var objectWillChange = ObjectWillChangePublisher()
 	
 	var filteredData: [FriendsSection] = []
-	var lettersOfNames: [String] = []
+	var friends: [FriendsSection] = []
 	
 	var loader: UserLoader
 	
@@ -54,12 +49,7 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 		loader.loadFriends() { [weak self] friends in
 			self?.friends = friends
 			self?.filteredData = friends
-			
-			// наполянем имена заголовков секций
-			//self?.loadLetters()
-
-			//self?.objectWillChange.send()
-			completion()
+			self?.objectWillChange.send()
 		}
 	}
 	
@@ -71,7 +61,6 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 		// Если поиск пустой, то ничего фильтровать нам не нужно
 		if text == "" {
 			filteredData = friends
-			completion()
 		} else {
 			for section in friends { // сначала перебираем массив секций с друзьями
 				for (_, friend) in section.data.enumerated() { // потом перебираем массивы друзей в секциях
@@ -82,33 +71,32 @@ final class FriendsViewModel: FriendsViewModelType, ObservableObject {
 						if filteredData.isEmpty {
 							searchedSection.data = [friend]
 							filteredData.append(searchedSection)
-							break
-						}
-						
-						// Если в массиве секций уже есть секция с таким ключом, то нужно к имеющемуся массиву друзей добавить друга
-						var found = false
-						for (sectionIndex, filteredSection) in filteredData.enumerated() {
-							if filteredSection.key == section.key {
-								filteredData[sectionIndex].data.append(friend)
-								found = true
-								break
+						} else {
+							
+							// Если в массиве секций уже есть секция с таким ключом, то нужно к имеющемуся массиву друзей добавить друга
+							var found = false
+							for (sectionIndex, filteredSection) in filteredData.enumerated() {
+								if filteredSection.key == section.key {
+									filteredData[sectionIndex].data.append(friend)
+									found = true
+									break
+								}
 							}
-						}
-						
-						// Если такого ключа ещё нет, то создаём новый массив с нашим найденным другом
-						if !found {
-							searchedSection.data = [friend]
-							filteredData.append(searchedSection)
+							
+							// Если такого ключа ещё нет, то создаём новый массив с нашим найденным другом
+							if !found {
+								searchedSection.data = [friend]
+								filteredData.append(searchedSection)
+							}
 						}
 					}
 				}
 			}
-			completion()
 		}
+		objectWillChange.send()
 	}
 	
 	func cancelSearch(completion: @escaping () -> Void) {
 		filteredData = friends
-		completion()
 	}
 }

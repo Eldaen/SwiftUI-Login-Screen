@@ -40,8 +40,7 @@ struct FriendsProfileView: View {
 				)
 			}
 			.onAppear {
-				viewModel.fetchPhotos {
-}
+				viewModel.fetchPhotos { }
 			}
 		}
 

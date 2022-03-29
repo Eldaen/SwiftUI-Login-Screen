@@ -19,19 +19,22 @@ struct MainScreenView: View {
 	
 	let userService = UserService(networkManager: NetworkManager())
 	
-    var body: some View {
+	var body: some View {
 		
 		TabView(selection: $selection) {
-			FriendsView(
-				viewModel: FriendsViewModel(
-					loader: userService
+			NavigationView {
+				FriendsView(
+					viewModel: FriendsViewModel(
+						loader: userService
+					)
 				)
-			)
-				.tabItem {
-					Image(systemName: "person")
-					Text("Friends")
-				}
-				.tag(0)
+					.navigationBarTitleDisplayMode(.inline)
+			}
+			.tabItem {
+				Image(systemName: "person")
+				Text("Friends")
+			}
+			.tag(0)
 			
 			GroupsView()
 				.tabItem {
@@ -57,11 +60,11 @@ struct MainScreenView: View {
 				}
 			}
 		}
-    }
+	}
 }
 
 struct MainScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainScreenView()
-    }
+	static var previews: some View {
+		MainScreenView()
+	}
 }

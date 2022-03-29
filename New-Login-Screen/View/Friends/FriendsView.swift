@@ -10,16 +10,13 @@ import SwiftUI
 /// Вью для отображения экрана друзей
 struct FriendsView: View {
 	
-	@ObservedObject var viewModel: FriendsViewModel
+	@StateObject var viewModel: FriendsViewModel
 	
-	init(viewModel: FriendsViewModel) {
-		self.viewModel = viewModel
-		
-	}
+	@State private var searchText = ""
 	
-    var body: some View {
+	var body: some View {
 		List {
-			ForEach(viewModel.friends) { friendSection in
+			ForEach(viewModel.filteredData) { friendSection in
 				Section(header: Text(String(friendSection.key))) {
 					ForEach(friendSection.data) { friend in
 						NavigationLink {
@@ -35,9 +32,16 @@ struct FriendsView: View {
 				
 			}
 		}
+		.searchable(text: $searchText)
+		.onChange(of: searchText, perform: { _ in
+			viewModel.search(searchText) { }
+		})
+		.onSubmit(of: .search, {
+			viewModel.search(searchText) { }
+		})
 		.onAppear(perform: {
-			viewModel.fetchFriends {}
+			viewModel.fetchFriends { }
 		})
 		.listStyle(.insetGrouped)
-    }
+	}
 }
