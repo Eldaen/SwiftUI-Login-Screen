@@ -7,20 +7,34 @@
 
 import SwiftUI
 
+/// Вью для отображения основного экрана после авторизации
 struct MainScreenView: View {
+	
+	// для скрытия вьюхи при логауте
+	@Environment(\.presentationMode) var presentation
 	
 	private let tabTitles = ["Friends", "Groups", "News"]
 	@State var selection = 0
 	
-    var body: some View {
+	
+	let userService = UserService(networkManager: NetworkManager())
+	
+	var body: some View {
 		
 		TabView(selection: $selection) {
-			FriendsView()
-				.tabItem {
-					Image(systemName: "person")
-					Text("Friends")
-				}
-				.tag(0)
+			NavigationView {
+				FriendsView(
+					viewModel: FriendsViewModel(
+						loader: userService
+					)
+				)
+					.navigationBarTitleDisplayMode(.inline)
+			}
+			.tabItem {
+				Image(systemName: "person")
+				Text("Friends")
+			}
+			.tag(0)
 			
 			GroupsView()
 				.tabItem {
@@ -38,11 +52,19 @@ struct MainScreenView: View {
 		}
 		.navigationTitle("\(tabTitles[selection])")
 		.navigationBarTitleDisplayMode(.inline)
-    }
+		.toolbar {
+			ToolbarItemGroup(placement: .navigation) {
+				Button("Logout") {
+					Session.instance.clean()
+					self.presentation.wrappedValue.dismiss()
+				}
+			}
+		}
+	}
 }
 
 struct MainScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainScreenView()
-    }
+	static var previews: some View {
+		MainScreenView()
+	}
 }
