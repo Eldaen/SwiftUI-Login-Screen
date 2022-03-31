@@ -19,9 +19,6 @@ protocol FriendsViewModelType {
 	/// Сервис по загрузке данных пользователей
 	var loader: UserLoader { get }
 	
-	/// Конфигурируем ячейку друга для отображения
-	//func configureCell(cell: FriendsTableViewCell, indexPath: IndexPath)
-	
 	/// Скачиваем из сети список друзей пользователя
 	func fetchFriends(completion: @escaping () -> Void)
 	
