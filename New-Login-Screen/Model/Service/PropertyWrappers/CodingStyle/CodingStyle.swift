@@ -7,6 +7,13 @@
 
 import Foundation
 
+/// Типы стилей, с которыми работает враппер
+enum CodingStyles {
+	case camelCase
+	case snakeCase
+	case kebabCase
+}
+
 /// Проперти враппер для приведения строк к выбранному стилю
 @propertyWrapper struct CodingStyle {
 	
@@ -30,51 +37,74 @@ import Foundation
 			set(newValue)
 		}
 	}
-	
-	/// Типы стилей, с которыми работает враппер
-	enum CodingStyles{
-		case camelCase
-		case snakeCase
-		case kebabCase
-	}
 }
 
 // MARK: - Private methods
 private extension CodingStyle {
 	
 	func get() -> String {
+		let text = cleanText()
+		
 		switch currectCase {
 		case .camelCase:
-			return makeCamelCase()
+			return makeCamelCase(text)
 		case .snakeCase:
-			makeSnakeCase()
+			return format(text, withCase: "-")
 		case .kebabCase:
-			makeKebabCase()
+			return format(text, withCase: "_")
 		}
-		
-		return text
 	}
 	
 	mutating func set(_ text: String) {
 		self.text = text
 	}
 	
-	func makeCamelCase() -> String {
+	func makeCamelCase(_ text: String) -> String {
+		guard !self.text.isEmpty else { return "" }
+		var firstSymbol = true
+
 		let text = text.lowercased()
 			.split(separator: " ")
 			.reduce("") {
-				let firstChar = $1.first ?? Character("")
-				return $0 + String(firstChar) + String($1.dropFirst())
+				if firstSymbol {
+					firstSymbol = false
+					return $0 + $1
+				} else {
+					let firstChar = $1.first ?? Character("")
+					return $0 + String(firstChar).uppercased() + String($1.dropFirst())
+				}
 			}
 		return text
 	}
 	
-	func makeSnakeCase() {
+	func format(_ text: String, withCase symbol: String) -> String {
+		guard !self.text.isEmpty else { return "" }
 		
+		var firstSymbol = true
+		let text = text.lowercased()
+			.split(separator: " ")
+			.reduce("") {
+				if firstSymbol {
+					firstSymbol = false
+					return $0 + $1
+				} else {
+					return $0 + symbol + $1
+				}
+			}
+		return text
 	}
 	
-	func makeKebabCase() {
+	func cleanText() -> String {
+		var text = self.text
+		text = text.replacingOccurrences(of: "[A-Z]", with: " $0",
+										 options: .regularExpression,
+										 range: text.range(of: text)
+		)
 		
+		
+		return String(text.map {
+			($0 == "-") || ($0 == "_") ? " " : $0
+		})
 	}
 }
 
