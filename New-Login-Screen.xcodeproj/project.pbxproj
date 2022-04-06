@@ -41,6 +41,7 @@
 		D05593E627F1C05C001DF846 /* FriendsCountMainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593E527F1C05C001DF846 /* FriendsCountMainResponse.swift */; };
 		D05593E827F1C07D001DF846 /* FriendsCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593E727F1C07D001DF846 /* FriendsCountResponse.swift */; };
 		D05593EC27F5CFF6001DF846 /* CodingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05593EB27F5CFF6001DF846 /* CodingStyle.swift */; };
+		D0B47FBE27FDC9040083B8BA /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B47FBD27FDC9040083B8BA /* LikeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		D05593E527F1C05C001DF846 /* FriendsCountMainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCountMainResponse.swift; sourceTree = "<group>"; };
 		D05593E727F1C07D001DF846 /* FriendsCountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCountResponse.swift; sourceTree = "<group>"; };
 		D05593EB27F5CFF6001DF846 /* CodingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingStyle.swift; sourceTree = "<group>"; };
+		D0B47FBD27FDC9040083B8BA /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				D028B32C27D0FFC500FFE60C /* LoginView.swift */,
 				D055939A27E9DE3A001DF846 /* AppView.swift */,
 				D055939C27E9E6F5001DF846 /* MainScreenView.swift */,
+				D0B47FBD27FDC9040083B8BA /* LikeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				D05593A427E9E767001DF846 /* GroupsView.swift in Sources */,
 				D05593D327EF039B001DF846 /* UserImagesMainResponse.swift in Sources */,
 				D05593D727EF05E5001DF846 /* VkFriendsMainResponse.swift in Sources */,
+				D0B47FBE27FDC9040083B8BA /* LikeView.swift in Sources */,
 				D028B31E27CCE5D700FFE60C /* New_Login_ScreenApp.swift in Sources */,
 				D05593DC27EF09F0001DF846 /* VkLoginWebView.swift in Sources */,
 			);
