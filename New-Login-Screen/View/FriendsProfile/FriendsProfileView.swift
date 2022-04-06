@@ -7,26 +7,45 @@
 
 import SwiftUI
 import ASCollectionView
+import Kingfisher
 
 /// Вью для отображения профиля друга
 struct FriendsProfileView: View {
 	
 	@ObservedObject var viewModel: FriendsProfileViewModel
 	
+	/// Флаг для отображения анимации лайка фото профиля
+	@State var likesFlag: Bool = false
+	
+	@State var profilePhotoLikes: Int = 0
+	
 	private let screenWidth = UIApplication.shared.connectedScenes
-			.filter({$0.activationState == .foregroundActive})
-			.compactMap({$0 as? UIWindowScene})
-			.first?
-			.windows
-			.filter({$0.isKeyWindow})
-			.first?.frame.width ?? 0
+		.filter({$0.activationState == .foregroundActive})
+		.compactMap({$0 as? UIWindowScene})
+		.first?
+		.windows
+		.filter({$0.isKeyWindow})
+		.first?.frame.width ?? 0
 	
 	init(viewModel: FriendsProfileViewModel) {
 		self.viewModel = viewModel
 	}
 	
-    var body: some View {
+	var body: some View {
 		VStack {
+			VStack {
+				KFImage(viewModel.friend.imageUrl)
+				LikeView(likeFlag: $likesFlag, likesCount: profilePhotoLikes)
+					.foregroundColor(Color.red)
+			}
+			.onTapGesture {
+				likesFlag.toggle()
+				
+				profilePhotoLikes = likesFlag == true ? profilePhotoLikes + 1 : profilePhotoLikes - 1
+			}
+			.padding(.bottom, 16)
+			
+			
 			Text(viewModel.friend.name)
 			
 			ASCollectionView(data: viewModel.storedImages) { item, _ in
@@ -43,6 +62,6 @@ struct FriendsProfileView: View {
 				viewModel.fetchPhotos { }
 			}
 		}
-
-    }
+		
+	}
 }

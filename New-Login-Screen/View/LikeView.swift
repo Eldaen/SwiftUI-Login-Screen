@@ -10,8 +10,10 @@ import SwiftUI
 /// Вью для отображения лайков
 struct LikeView: View {
 	
-	@State var likeFlag: Bool = false
+	/// Флаг заполненности сердечка
+	@Binding var likeFlag: Bool
 	
+	/// Кол-во лайков у фото
 	var likesCount: Int
 	
     var body: some View {
@@ -25,13 +27,5 @@ struct LikeView: View {
 				Image(systemName: "heart")
 			}
 		}
-		
-		
-    }
-}
-
-struct LikeView_Previews: PreviewProvider {
-    static var previews: some View {
-        LikeView(likesCount: 111)
     }
 }
