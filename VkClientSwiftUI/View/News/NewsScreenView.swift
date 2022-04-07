@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewsScreenView: View {
     var body: some View {
-		NewsUIKitView(isShowing: .constant(true))
+		NewsUIKitView()
     }
 }
 

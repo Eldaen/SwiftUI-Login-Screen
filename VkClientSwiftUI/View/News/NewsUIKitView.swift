@@ -10,8 +10,6 @@ import SwiftUI
 /// Вью для отображения UIKit Контроллера новостей
 struct NewsUIKitView: UIViewControllerRepresentable {
 	
-	@Binding var isShowing: Bool
-
 	func makeUIViewController(context: Context) -> NewsController {
 		
 		// Вот такая сборка это костыль, понимаю, это для упрощения
@@ -24,19 +22,4 @@ struct NewsUIKitView: UIViewControllerRepresentable {
 	}
 	
 	func updateUIViewController(_ uiViewController: NewsController, context: Context) { }
-	
-	func makeCoordinator() -> NewsUIKitView.NewsCoordinator {
-		return NewsCoordinator(isShowing: $isShowing)
-	}
-}
-
-extension NewsUIKitView {
-	
-	class NewsCoordinator: NSObject {
-		@Binding var isShowing: Bool
-		
-		init(isShowing: Binding<Bool>) {
-			self._isShowing = isShowing
-		}
-	}
 }
