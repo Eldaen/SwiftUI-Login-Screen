@@ -7,14 +7,23 @@
 
 import SwiftUI
 import WebKit
+import Combine
 
 struct VKLoginWebView: UIViewRepresentable {
+	
+	/// Вью модель авторизации
+	@ObservedObject var viewModel: LoginViewModel
 	
 	fileprivate let navigationDelegate = WebViewNavigationDelegate()
 	
 	func makeUIView(context: Context) -> WKWebView {
 		let webView = WKWebView()
 		webView.navigationDelegate = navigationDelegate
+		
+		navigationDelegate.authorize = {
+			self.authorize()
+		}
+		
 		return webView
 	}
 	
@@ -40,9 +49,15 @@ struct VKLoginWebView: UIViewRepresentable {
 		
 		return components.url.map { URLRequest(url: $0) }
 	}
+	
+	private func authorize() {
+		self.viewModel.authorize()
+	}
 }
 
 class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
+	
+	var authorize: (() -> Void)? = nil
 
 	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
 		guard let url = navigationResponse.response.url,
@@ -75,6 +90,8 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
 		UserDefaults.standard.set(token, forKey: "vkToken")
 		NotificationCenter.default.post(name: NSNotification.Name("vkTokenSaved"), object: self)
 		print("Token: \(token)")
+		
+		authorize?()
 		
 		decisionHandler(.cancel)
 	}

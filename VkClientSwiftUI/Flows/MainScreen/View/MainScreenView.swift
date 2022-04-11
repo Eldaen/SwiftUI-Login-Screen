@@ -52,14 +52,15 @@ struct MainScreenView: View {
 		}
 		.navigationTitle("\(tabTitles[selection])")
 		.navigationBarTitleDisplayMode(.inline)
-		.toolbar {
-			ToolbarItemGroup(placement: .navigation) {
-				Button("Logout") {
-					Session.instance.clean()
-					self.presentation.wrappedValue.dismiss()
-				}
-			}
-		}
+		.navigationBarBackButtonHidden(true)
+//		.toolbar {
+//			ToolbarItemGroup(placement: .navigation) {
+//				Button("Logout") {
+//					Session.instance.clean()
+//					self.presentation.wrappedValue.dismiss()
+//				}
+//			}
+//		}
 	}
 }
 

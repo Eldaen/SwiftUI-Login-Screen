@@ -8,18 +8,24 @@
 import UIKit
 import SwiftUI
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	
 	var window: UIWindow?
+	
+	/// Координатор авторизации приложения
+	var appCoordinator: AppCoordinator?
 	
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		
 		guard let windowScene = scene as? UIWindowScene else { return }
+		let coordinator = AppCoordinator()
 		
 		let window = UIWindow(windowScene: windowScene)
-		window.rootViewController = UIHostingController(rootView: AppView())
+		window.rootViewController = coordinator.navigationController
 		window.makeKeyAndVisible()
-		
 		self.window = window
+		
+		self.appCoordinator = coordinator
+		coordinator.start()
 	}
 }
