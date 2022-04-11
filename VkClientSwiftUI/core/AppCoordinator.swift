@@ -44,7 +44,10 @@ final class AppCoordinator {
 	}
 	
 	private func makeMainScreenView() -> UIViewController {
-		let vc = UIHostingController(rootView: MainScreenView())
+		let networkManager = NetworkManager()
+		let userService = UserService(networkManager: networkManager)
+		let viewModel = MainScreenViewModel(userService: userService)
+		let vc = UIHostingController(rootView: MainScreenView(viewModel: viewModel))
 		vc.navigationItem.setHidesBackButton(true, animated: false)
 		
 		let logoutButton = UIBarButtonItem(title: "Logout",
