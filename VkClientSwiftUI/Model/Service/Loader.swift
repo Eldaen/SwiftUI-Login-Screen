@@ -58,11 +58,11 @@ extension Loader {
 	func loadImage(url: String, completion: @escaping (UIImage) -> Void) {
 		guard let imageUrl = URL(string: url) else { return }
 		
-//		// если есть в кэше, то грузить не нужно
-//		if let image = cache[imageUrl] {
-//			completion(image)
-//			return
-//		}
+		//		// если есть в кэше, то грузить не нужно
+		//		if let image = cache[imageUrl] {
+		//			completion(image)
+		//			return
+		//		}
 		
 		// Если нигде нет, то грузим и кешируем
 		networkManager.loadImage(url: imageUrl) { result in
@@ -92,5 +92,27 @@ extension Loader {
 			}
 		}
 		return imageLinks
+	}
+	
+	/// Формирует модели картинок друзей нужного и сохраняет ID картинок
+	func sortFrindImages(by sizeType: String, from array: [ApiImage]) -> [FriendImage] {
+		var friendImages: [FriendImage] = []
+		
+		for model in array {
+			for size in model.sizes {
+				if size.type == sizeType {
+					friendImages.append(
+						FriendImage(
+							photoId: model.id,
+							ownerId: model.ownerId,
+							link: size.url,
+							likesCount: model.likes.count,
+							userLikes: model.likes.userLikes
+						)
+					)
+				}
+			}
+		}
+		return friendImages
 	}
 }

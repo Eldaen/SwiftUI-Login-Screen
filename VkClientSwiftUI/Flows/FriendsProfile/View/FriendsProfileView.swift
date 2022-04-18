@@ -12,11 +12,22 @@ import Kingfisher
 /// Вью для отображения профиля друга
 struct FriendsProfileView: View {
 	
+	/// Вью модель профиля пользователя
 	@ObservedObject var viewModel: FriendsProfileViewModel
+	
+	/// Состояние высоты ячейки
+	@State private var rowHeight: CGFloat = 0
+	
+	let columns = [
+		GridItem(.flexible(minimum: 0)),
+		GridItem(.flexible(minimum: 0)),
+		GridItem(.flexible(minimum: 0)),
+	]
 	
 	/// Флаг для отображения анимации лайка фото профиля
 	@State var likesFlag: Bool = false
 	
+	/// Статическое кол-во лайков под фото пользователя, пока не сделана загрузка
 	@State var profilePhotoLikes: Int = 0
 	
 	private let screenWidth = UIApplication.shared.connectedScenes
@@ -27,9 +38,13 @@ struct FriendsProfileView: View {
 		.filter({$0.isKeyWindow})
 		.first?.frame.width ?? 0
 	
+	// MARK: - Init
+	
 	init(viewModel: FriendsProfileViewModel) {
 		self.viewModel = viewModel
 	}
+	
+	// MARK: - Body
 	
 	var body: some View {
 		VStack {
@@ -45,23 +60,24 @@ struct FriendsProfileView: View {
 			}
 			.padding(.bottom, 16)
 			
-			
-			Text(viewModel.friend.name)
-			
-			ASCollectionView(data: viewModel.storedImages) { item, _ in
-				FriendsProfileRow(image: item)
-			}
-			.layout {
-				.grid(
-					layoutMode: .fixedNumberOfColumns(3),
-					itemSpacing: 8,
-					lineSpacing: 16
-				)
-			}
-			.onAppear {
-				viewModel.fetchPhotos { }
+			GeometryReader { proxy in
+				ScrollView {
+					LazyVGrid(columns: columns, alignment: .center, spacing: 16) {
+						if let images = viewModel.storedImages {
+							ForEach(images) { image in
+								FriendsProfileImagesCell(image: image, networkManager: viewModel.loader.networkManager)
+									.frame(height: self.rowHeight)
+							}
+						}
+					}
+					.onAppear {
+						viewModel.fetchPhotos { }
+					}
+					.onPreferenceChange(FriendsProfileImagesCellPreference.self) { height in
+						self.rowHeight = height
+					}
+				}
 			}
 		}
-		
 	}
 }

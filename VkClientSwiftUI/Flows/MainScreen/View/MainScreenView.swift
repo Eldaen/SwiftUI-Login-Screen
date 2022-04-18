@@ -10,14 +10,27 @@ import SwiftUI
 /// Вью для отображения основного экрана после авторизации
 struct MainScreenView: View {
 	
+	/// Вью модель основного экрана
+	var viewModel: MainScreenViewModel
+	
+	/// Менеджер по взаимодействию с сетью
+	var networkManager: NetworkManager
+	
 	// для скрытия вьюхи при логауте
 	@Environment(\.presentationMode) var presentation
 	
 	private let tabTitles = ["Friends", "Groups", "News"]
 	@State var selection = 0
 	
+	// MARK: - Init
 	
-	let userService = UserService(networkManager: NetworkManager())
+	init(viewModel: MainScreenViewModel, networkManager: NetworkManager) {
+		UITabBar.appearance().backgroundColor = UIColor.white
+		self.viewModel = viewModel
+		self.networkManager = networkManager
+	}
+	
+	// MARK: - Body
 	
 	var body: some View {
 		
@@ -25,10 +38,11 @@ struct MainScreenView: View {
 			NavigationView {
 				FriendsView(
 					viewModel: FriendsViewModel(
-						loader: userService
+						loader: viewModel.userService
 					)
 				)
-					.navigationBarTitleDisplayMode(.inline)
+				.navigationBarTitleDisplayMode(.inline)
+				.environmentObject(networkManager)
 			}
 			.tabItem {
 				Image(systemName: "person")
@@ -53,19 +67,5 @@ struct MainScreenView: View {
 		.navigationTitle("\(tabTitles[selection])")
 		.navigationBarTitleDisplayMode(.inline)
 		.navigationBarBackButtonHidden(true)
-//		.toolbar {
-//			ToolbarItemGroup(placement: .navigation) {
-//				Button("Logout") {
-//					Session.instance.clean()
-//					self.presentation.wrappedValue.dismiss()
-//				}
-//			}
-//		}
-	}
-}
-
-struct MainScreenView_Previews: PreviewProvider {
-	static var previews: some View {
-		MainScreenView()
 	}
 }
