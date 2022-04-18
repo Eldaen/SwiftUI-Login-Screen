@@ -65,7 +65,7 @@ struct FriendsProfileView: View {
 					LazyVGrid(columns: columns, alignment: .center, spacing: 16) {
 						if let images = viewModel.storedImages {
 							ForEach(images) { image in
-								FriendsProfileImagesCell(image: image)
+								FriendsProfileImagesCell(image: image, networkManager: viewModel.loader.networkManager)
 									.frame(height: self.rowHeight)
 							}
 						}

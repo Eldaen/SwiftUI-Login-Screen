@@ -13,6 +13,9 @@ struct MainScreenView: View {
 	/// Вью модель основного экрана
 	var viewModel: MainScreenViewModel
 	
+	/// Менеджер по взаимодействию с сетью
+	var networkManager: NetworkManager
+	
 	// для скрытия вьюхи при логауте
 	@Environment(\.presentationMode) var presentation
 	
@@ -21,9 +24,10 @@ struct MainScreenView: View {
 	
 	// MARK: - Init
 	
-	init(viewModel: MainScreenViewModel) {
+	init(viewModel: MainScreenViewModel, networkManager: NetworkManager) {
 		UITabBar.appearance().backgroundColor = UIColor.white
 		self.viewModel = viewModel
+		self.networkManager = networkManager
 	}
 	
 	// MARK: - Body
@@ -37,7 +41,8 @@ struct MainScreenView: View {
 						loader: viewModel.userService
 					)
 				)
-					.navigationBarTitleDisplayMode(.inline)
+				.navigationBarTitleDisplayMode(.inline)
+				.environmentObject(networkManager)
 			}
 			.tabItem {
 				Image(systemName: "person")

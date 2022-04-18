@@ -46,9 +46,8 @@ final class FriendsProfileViewModel: FriendsProfileViewModelType, ObservableObje
 		loader.loadUserPhotos(for: String(friend.id)) { [weak self] images in
 			self?.storedModels = images
 			
-			if let imagesLinks = self?.loader.sortImage(by: "m", from: images) {
-				
-				self?.storedImages = imagesLinks.map { FriendImage(link: $0) }
+			if let imagesLinks = self?.loader.sortFrindImages(by: "m", from: images) {
+				self?.storedImages = imagesLinks
 			}
 			completion()
 		}

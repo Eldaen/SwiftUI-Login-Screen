@@ -8,31 +8,38 @@
 import SwiftUI
 import Kingfisher
 
+
+/// Вью для отображения подробного просмотра фотографии
 struct FriendsPhotoGalleryView: View {
 	
+	/// Вью модель экрана просмотра фото
 	@ObservedObject var viewModel: FriendsPhotoGalleryViewModel
 	
-	init(image: FriendImage) {
-		self.viewModel = FriendsPhotoGalleryViewModel(currentPhoto: image)
+	init(image: FriendImage, networkManager: NetworkManager) {
+		self.viewModel = FriendsPhotoGalleryViewModel(
+			currentPhoto: image,
+			imageLikeService: ImageLikeService(networkManager: networkManager)
+		)
 	}
 	
 	var body: some View {
-		GeometryReader { proxy in
-			VStack {
-				KFImage(viewModel.photo.imageUrl)
-					.resizable()
-					.scaledToFill()
-				
-				LikeView(likeFlag: .constant(false), likesCount: 10)
-					.frame(width: proxy.size.width, height:0)
-					.background(Color.green)
-			}
+		VStack {
+			Spacer()
+			
+			KFImage(viewModel.photo.imageUrl)
+				.resizable()
+				.scaledToFit()
+			
+			Spacer()
+			
+			LikeView(likeFlag: $viewModel.likeFlag, likesCount: viewModel.photo.likesCount)
+				.padding()
+				.foregroundColor(Color.white)
 		}
-	}
-}
-
-struct FriendsPhotoGalleryView_Previews: PreviewProvider {	
-	static var previews: some View {
-		FriendsPhotoGalleryView(image: FriendImage(link: ""))
+		.frame(maxWidth: .infinity)
+		.background(Color.black)
+		.onTapGesture {
+			viewModel.photo.userLikes == 0 ? viewModel.setLike() : viewModel.removeLike()
+		}
 	}
 }

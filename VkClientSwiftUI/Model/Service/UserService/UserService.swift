@@ -132,6 +132,7 @@ final class UserService: UserLoader {
 		let params = [
 			"owner_id" : id,
 			"count": "50",
+			"extended": "1",
 		]
 		networkManager.request(method: .photosGetAll,
 							   httpMethod: .get,

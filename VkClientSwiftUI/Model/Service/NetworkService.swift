@@ -42,7 +42,7 @@ protocol NetworkManagerInterface {
 }
 
 /// Класс, управляющий запросами в сеть
-final class NetworkManager: NetworkManagerInterface {
+final class NetworkManager: NetworkManagerInterface, ObservableObject {
 	
 	private let session: URLSession = {
 		let config = URLSessionConfiguration.default

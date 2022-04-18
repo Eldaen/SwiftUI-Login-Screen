@@ -13,10 +13,16 @@ struct FriendsProfileImagesCell: View {
 	
 	let image: FriendImage
 	
+	/// менеджер по работе с сетью, чтобы передать его дальше
+	let networkManager: NetworkManagerInterface
+	
 	var body: some View {
 		
 		NavigationLink {
-			FriendsPhotoGalleryView(image: self.image)
+			FriendsPhotoGalleryView(
+				image: self.image,
+				networkManager: networkManager as? NetworkManager ?? NetworkManager()
+			)
 		} label: {
 			GeometryReader { proxy in
 				KFImage(image.imageUrl)
